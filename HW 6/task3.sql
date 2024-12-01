@@ -11,8 +11,7 @@ SELECT restStaff.first_name, restStaff.surname FROM restStaff WHERE restStaff.he
 SELECT restBill.cust_name, restBill.bill_total, restStaff.first_name, restStaff.surname FROM restBill JOIN restStaff ON restBill.waiter_no = restStaff.staff_no ORDER BY restBill.bill_total DESC;
 
 --5
-SELECT DISTINCT restStaff.first_name, restStaff.surname FROM restStaff WHERE restStaff.staff_no IN ( SELECT restBill.waiter_no FROM restBill WHERE restBill.table_no IN (SELECT DISTINCT restBill.table_no FROM restBill WHERE restBill.bill_no IN (00014, 00017))
-);
+SELECT DISTINCT restStaff.first_name, restStaff.surname FROM restStaff WHERE restStaff.staff_no IN ( SELECT restBill.waiter_no FROM restBill WHERE restBill.table_no IN (SELECT DISTINCT restBill.table_no FROM restBill WHERE restBill.bill_no IN (00014, 00017)));
 
 --6
 SELECT DISTINCT restStaff.first_name, restStaff.surname FROM restStaff WHERE restStaff.staff_no IN ( SELECT restBill.waiter_no FROM restBill JOIN restRest_table ON restBill.table_no = restRest_table.table_no WHERE restRest_table.room_name = 'Blue' AND restBill.bill_date = 160312) OR restStaff.staff_no = (SELECT restRoom_management.headwaiter FROM restRoom_management WHERE restRoom_management.room_name = 'Blue' AND restRoom_management.room_date = 160312);
